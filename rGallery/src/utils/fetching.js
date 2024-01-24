@@ -1,12 +1,13 @@
 // Fetcher.js
 import React, { useState, useEffect } from "react";
 
-const Fetcher = ({ setParentPhotos }) => {
+const Fetcher = ({ setParentPhotos, searchQuery, startingPage}) => {
   const [photos, setPhotos] = useState([]);
   const apiKey = "EgGM3dGXhNdCCd6oG5cxop2VCNxtmzareICrg8qLfA7M2WgAxOZZ7U6x";
-  const apiUrl = "https://api.pexels.com/v1/curated";
-
+  const apiUrl = `https://api.pexels.com/v1/search?query=${searchQuery}&per_page=10`; // You can adjust per_page as needed
+  
   useEffect(() => {
+    console.log("Fetching data...");
     const fetchData = async () => {
       try {
         const response = await fetch(apiUrl, {
@@ -28,7 +29,7 @@ const Fetcher = ({ setParentPhotos }) => {
     };
 
     fetchData();
-  }, [setParentPhotos]);
+  }, [searchQuery, setParentPhotos, startingPage]);
 
   return null; // You can return any component or null depending on your use case
 };
