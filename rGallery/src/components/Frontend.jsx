@@ -1,52 +1,60 @@
 // ParentComponent.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Fetcher from "../utils/fetching";
-import { useEffect } from "react";
 
 const Frontend = () => {
   const [parentPhotos, setParentPhotos] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("nature");
   const [startingPage, setStartingPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-   
     setSearchQuery("");
     setStartingPage(1);
   }, []);
 
-
   const handleSearch = () => {
     setParentPhotos([]);
+    setLoading(true);
   };
 
-
+  const handleDataLoaded = () => {
+    setLoading(false);
+  };
 
   return (
-    <div>
+    <>
       <input
         type="text"
         placeholder="Search for photos..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-
-      <button onClick={handleSearch}>Search</button>
-
-      <Fetcher
-        setParentPhotos={setParentPhotos}
-        searchQuery={searchQuery}
-        startingPage={startingPage}
-      />
-
-      {parentPhotos.map((photo) => (
-        <img
-          className="hover:opacity-70"
-          key={photo.id}
-          src={photo.src.original}
-          alt={photo.photographer}
+      <div className="grid grid-cols-3 gap-4">
+        <Fetcher
+          setParentPhotos={(photos) => {
+            setParentPhotos(photos);
+            handleDataLoaded();
+          }}
+          searchQuery={searchQuery}
+          startingPage={startingPage}
         />
-      ))}
-    </div>
+
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          parentPhotos.map((photo) => (
+            <div key={photo.id} className="relative overflow-hidden aspect-w-4 aspect-h-3">
+              <img
+                className="hover:opacity-70 object-cover w-full h-full"
+                src={photo.src.original}
+                alt={photo.photographer}
+              />
+            </div>
+          ))
+        )}
+      </div>
+    </>
   );
 };
 
