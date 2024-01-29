@@ -5,8 +5,9 @@ import Fetcher from "../utils/fetching";
 const Frontend = () => {
   const [parentPhotos, setParentPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("nature");
-  const [startingPage, setStartingPage] = useState(1);
+  const [startingPage, setStartingPage] = useState("1");
   const [loading, setLoading] = useState(true);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     setSearchQuery("");
@@ -14,12 +15,13 @@ const Frontend = () => {
   }, []);
 
   const handleSearch = () => {
+    setSearchQuery(inputValue);
     setParentPhotos([]);
     setLoading(true);
   };
 
   const handleDataLoaded = () => {
-    setLoading(false);
+    setLoading(false); 
   };
 
   return (
@@ -27,14 +29,15 @@ const Frontend = () => {
       <input
         type="text"
         placeholder="Search for photos..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
+      <button onClick={handleSearch}>Search</button>
       <div className="grid grid-cols-3 gap-4">
         <Fetcher
           setParentPhotos={(photos) => {
             setParentPhotos(photos);
-            handleDataLoaded();
+            handleDataLoaded(); 
           }}
           searchQuery={searchQuery}
           startingPage={startingPage}
