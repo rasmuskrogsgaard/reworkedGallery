@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Fetcher from "../utils/fetching";
 
+
 const Frontend = () => {
   const [parentPhotos, setParentPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("nature");
@@ -27,12 +28,13 @@ const Frontend = () => {
   return (
     <>
       <input
+        
         type="text"
         placeholder="Search for photos..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button class="inline-block cursor-pointer" onClick={handleSearch}>Search</button>
       <div className="grid grid-cols-3 gap-4">
         <Fetcher
           setParentPhotos={(photos) => {
