@@ -1,0 +1,14 @@
+Random Gallery
+
+Fetch data
+
+search functions
+
+navbar 
+
+favorites
+
+liked
+
+saved
+

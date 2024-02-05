@@ -1,14 +1,14 @@
-import Frontend from "./components/Frontend";
+import Frontpage from "./components/Frontpage";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-blue-700/80">Photo Archive</h1>
-      
-    
-    <Frontend />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Frontpage />} />
+      </Routes>
+    </Router>
   );
 }
 

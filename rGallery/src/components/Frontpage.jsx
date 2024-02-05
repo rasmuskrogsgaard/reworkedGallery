@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Fetcher from "../utils/fetching";
 
-const Frontend = () => {
+const Frontpage = () => {
   const [parentPhotos, setParentPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("nature");
   const [startingPage, setStartingPage] = useState("1");
@@ -21,23 +21,30 @@ const Frontend = () => {
   };
 
   const handleDataLoaded = () => {
-    setLoading(false); 
+    setLoading(false);
   };
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search for photos..."
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
+
+
+      {/*Search Nav  */}
+
+      <ul class="flex flex-row">
+        <input
+          type="text"
+          placeholder="Search for photos..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </ul>
       <div className="grid grid-cols-3 gap-4">
+
         <Fetcher
           setParentPhotos={(photos) => {
             setParentPhotos(photos);
-            handleDataLoaded(); 
+            handleDataLoaded();
           }}
           searchQuery={searchQuery}
           startingPage={startingPage}
@@ -61,4 +68,4 @@ const Frontend = () => {
   );
 };
 
-export default Frontend;
+export default Frontpage;
