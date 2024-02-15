@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const Fetcher = ({ setParentPhotos, searchQuery, startingPage}) => {
   const [photos, setPhotos] = useState([]);
   const apiKey = "EgGM3dGXhNdCCd6oG5cxop2VCNxtmzareICrg8qLfA7M2WgAxOZZ7U6x";
-  const apiUrl = `https://api.pexels.com/v1/search?query=${searchQuery}&per_page=15`; 
+  const apiUrl = `https://api.pexels.com/v1/search?query=${searchQuery}&per_page=16`; 
   
   useEffect(() => {
     console.log("Fetching data...");

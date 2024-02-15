@@ -2,12 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Fetcher from "../utils/fetching";
 
-<<<<<<< HEAD:rGallery/src/components/Frontpage.jsx
 const Frontpage = () => {
-=======
 
-const Frontend = () => {
->>>>>>> 6b9653aa5fc50103ad149d44c1e2ac9e01718db7:rGallery/src/components/Frontend.jsx
   const [parentPhotos, setParentPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("nature");
   const [startingPage, setStartingPage] = useState("1");
@@ -31,12 +27,11 @@ const Frontend = () => {
 
   return (
     <>
-<<<<<<< HEAD:rGallery/src/components/Frontpage.jsx
 
 
       {/*Search Nav  */}
 
-      <ul class="flex flex-row">
+      <ul class="flex flex-column">
         <input
           type="text"
           placeholder="Search for photos..."
@@ -45,17 +40,7 @@ const Frontend = () => {
         />
         <button onClick={handleSearch}>Search</button>
       </ul>
-=======
-      <input
-        
-        type="text"
-        placeholder="Search for photos..."
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button class="inline-block cursor-pointer" onClick={handleSearch}>Search</button>
->>>>>>> 6b9653aa5fc50103ad149d44c1e2ac9e01718db7:rGallery/src/components/Frontend.jsx
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-4 w-1/2" >
 
         <Fetcher
           setParentPhotos={(photos) => {
